@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.aboughalymotors.lifecyclearchitecturedemo.R;
 import com.aboughalymotors.lifecyclearchitecturedemo.viewmodel.MinDateTimeViewMode;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private MinDateTimeViewMode viewModel;
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Date now =  Calendar.getInstance().getTime();
+        Log.d("main", "onCreate: time: " + Calendar.getInstance().getTime().toString());
+
         viewModel = ViewModelProviders.of(this).get(MinDateTimeViewMode.class);
         viewModel.init();
 
@@ -32,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(@Nullable String s) {
                 minDate.setText(s);
                 Log.d("main", "onCreate: s: " + s);
+
+                Log.d("main", "onCreate: time: " + Calendar.getInstance().getTime().toString());
+                Log.d("main", "onCreate: time diff: " + now.compareTo(Calendar.getInstance().getTime()));
+
 
             }
         });
