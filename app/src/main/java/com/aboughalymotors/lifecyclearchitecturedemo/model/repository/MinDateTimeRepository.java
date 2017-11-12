@@ -9,7 +9,6 @@ import com.aboughalymotors.lifecyclearchitecturedemo.App;
 import com.aboughalymotors.lifecyclearchitecturedemo.model.beans.GeneralResponse;
 import com.aboughalymotors.lifecyclearchitecturedemo.model.storage.AppDataBase;
 import com.aboughalymotors.lifecyclearchitecturedemo.model.storage.MinDateTimeEntity;
-import com.aboughalymotors.lifecyclearchitecturedemo.model.storage.SharedPreferenceHandler;
 import com.aboughalymotors.lifecyclearchitecturedemo.model.service.ServiceGenerator;
 import com.aboughalymotors.lifecyclearchitecturedemo.model.service.Services;
 
@@ -27,7 +26,6 @@ public class MinDateTimeRepository {
 
     ////VARIABLES
     private Services webService;
-    private SharedPreferenceHandler handler;
 
     ////METHODS
     //Constructor
