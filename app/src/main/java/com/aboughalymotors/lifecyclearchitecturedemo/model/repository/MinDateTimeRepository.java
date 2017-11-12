@@ -24,13 +24,18 @@ import retrofit2.Response;
  */
 
 public class MinDateTimeRepository {
+
+    ////VARIABLES
     private Services webService;
     private SharedPreferenceHandler handler;
 
+    ////METHODS
+    //Constructor
     public MinDateTimeRepository() {
         webService = ServiceGenerator.createService();
     }
 
+    //Public Methods
     public LiveData<String> getMinDateTime(){
 
         final MutableLiveData<String> data = new MutableLiveData<>();
@@ -40,26 +45,41 @@ public class MinDateTimeRepository {
 
         List<String> minDate = db.minDateTimeDao().getMinDateTime();
 
-        if (minDate != null && minDate.size() > 0){
-            data.setValue(minDate.get(0));
-            Log.d("main", "getMinDateTime: (minDate.get(0): " + (minDate.get(0)));
-        }else {
-            Call<GeneralResponse<String>> call = webService.getMinBookingDate();
-            call.enqueue(new Callback<GeneralResponse<String>>() {
-                @Override
-                public void onResponse(Call<GeneralResponse<String>> call, Response<GeneralResponse<String>> response) {
-                    Log.d("main", "onResponse: response.body().getModel(): " + response.body().getModel());
-                    data.setValue(response.body().getModel());
-                    db.minDateTimeDao().insertDate(new MinDateTimeEntity(response.body().getModel()));
-                }
+        if (minDate != null && minDate.size() > 0){ //DB
 
-                @Override
-                public void onFailure(Call<GeneralResponse<String>> call, Throwable t) {
+            getDataFromDB(data, minDate);
 
-                }
-            });
+        }else { //Webservice
+
+            getDataFromWebService(db, data);
+
         }
 
         return data;
+    }
+
+    /*================================== PRIVATE HELPFUL METHODS ==============================*/
+    private void getDataFromDB(MutableLiveData<String> data, List<String> minDate) {
+        data.setValue(minDate.get(0));
+        Log.d("main", "getMinDateTime: (minDate.get(0): " + (minDate.get(0)));
+    }
+
+    private void getDataFromWebService(final AppDataBase db, final MutableLiveData<String> data) {
+
+        Call<GeneralResponse<String>> call = webService.getMinBookingDate();
+        call.enqueue(new Callback<GeneralResponse<String>>() {
+            @Override
+            public void onResponse(Call<GeneralResponse<String>> call, Response<GeneralResponse<String>> response) {
+                Log.d("main", "onResponse: response.body().getModel(): " + response.body().getModel());
+                data.setValue(response.body().getModel());
+                db.minDateTimeDao().insertDate(new MinDateTimeEntity(response.body().getModel()));
+            }
+
+            @Override
+            public void onFailure(Call<GeneralResponse<String>> call, Throwable t) {
+
+            }
+        });
+
     }
 }

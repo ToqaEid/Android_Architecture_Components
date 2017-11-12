@@ -8,13 +8,13 @@ import android.app.Application;
 
 public class App extends Application {
 
+    ////VARIABLES
     private static App app;
 
+    ////METHODS
     @Override
     public void onCreate() {
         super.onCreate();
-
-//        RoomDB.getInstance(this); //This will provide AppDatabase Instance
 
         app = this;
     }

@@ -15,10 +15,12 @@ public class MinDateTimeEntity {
 
     public String date;
 
+    ////CONSTRUCTORS
     public MinDateTimeEntity(String date) {
         this.date = date;
     }
 
+    ////GETTERS & SETTERS
     public int getId() {
         return id;
     }

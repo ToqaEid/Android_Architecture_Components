@@ -14,14 +14,18 @@ import com.aboughalymotors.lifecyclearchitecturedemo.model.repository.MinDateTim
 
 public class MinDateTimeViewMode extends AndroidViewModel {
 
+    ////VARIABLES
     MinDateTimeRepository repository;
     LiveData<String> data;
 
+    ////METHODS
+    //Constructor
     public MinDateTimeViewMode(@NonNull Application application) {
         super(application);
 
     }
 
+    //Public Methods
     public void init(){
         repository = new MinDateTimeRepository();
         data = repository.getMinDateTime();
