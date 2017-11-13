@@ -31,7 +31,6 @@ public class MinDateTimeViewMode extends AndroidViewModel {
         data = repository.getMinDateTime();
     }
     public LiveData<String> getMinDate(){
-        Log.d("main", "getMinDate: data: " + data);
         return data;
     }
 }
