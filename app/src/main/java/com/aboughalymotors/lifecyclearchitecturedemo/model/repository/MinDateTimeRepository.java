@@ -59,7 +59,7 @@ public class MinDateTimeRepository {
     /*================================== PRIVATE HELPFUL METHODS ==============================*/
     private void getDataFromDB(MutableLiveData<String> data, List<String> minDate) {
         data.setValue(minDate.get(0));
-        Log.d("main", "getMinDateTime: (minDate.get(0): " + (minDate.get(0)));
+        Log.d("main", "getMinDateTime: minDate.get(0): " + (minDate.get(0)));
     }
 
     private void getDataFromWebService(final AppDataBase db, final MutableLiveData<String> data) {

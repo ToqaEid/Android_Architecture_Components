@@ -1,22 +1,27 @@
 package com.aboughalymotors.lifecyclearchitecturedemo.ui;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.aboughalymotors.lifecyclearchitecturedemo.R;
+import com.aboughalymotors.lifecyclearchitecturedemo.observers.MainObserver;
 import com.aboughalymotors.lifecyclearchitecturedemo.viewmodel.MinDateTimeViewMode;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LifecycleOwner{
 
     ////UI REFERENCES
     private TextView minDate;
 
     ////VARIABLES
     private MinDateTimeViewMode viewModel;
+    MainObserver mainObserver;
 
 
     ////METHODS
@@ -25,12 +30,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mainObserver = new MainObserver(this);
+
         initView();
 
         initViewModel();
 
         observeMinDateData();
 
+
+    }
+
+    @Override
+    public Lifecycle getLifecycle() {
+        return super.getLifecycle();
     }
 
     /*================================== PRIVATE HELPFUL METHODS ==============================*/
