@@ -14,7 +14,7 @@ import com.aboughalymotors.lifecyclearchitecturedemo.R;
 import com.aboughalymotors.lifecyclearchitecturedemo.observers.MainObserver;
 import com.aboughalymotors.lifecyclearchitecturedemo.viewmodel.MinDateTimeViewMode;
 
-public class MainActivity extends AppCompatActivity implements LifecycleOwner{
+public class MainActivity extends AppCompatActivity {
 
     ////UI REFERENCES
     private TextView minDate;
@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner{
 
     }
 
-    @Override
-    public Lifecycle getLifecycle() {
-        return super.getLifecycle();
-    }
+//    @Override
+//    public Lifecycle getLifecycle() {
+//        return super.getLifecycle();
+//    }
 
     /*================================== PRIVATE HELPFUL METHODS ==============================*/
     private void initView() {

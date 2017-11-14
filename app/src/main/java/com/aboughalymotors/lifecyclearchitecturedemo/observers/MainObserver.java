@@ -20,8 +20,10 @@ public class MainObserver implements LifecycleObserver, LifecycleOwner {
 
     public MainObserver(LifecycleOwner lifeCycleOwner) {
         lifeCycleOwner.getLifecycle().addObserver(this);
+
         mLifecycleRegistry = new LifecycleRegistry(this);
-        new SecondObserver(this);
+        mLifecycleRegistry.addObserver(new SecondObserver(this));
+        mLifecycleRegistry.addObserver(new ThirdObserver(this));
 
     }
 
